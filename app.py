@@ -1,5 +1,8 @@
+from flask import Flask, request, jsonify, render_template
 import re
 import random
+
+app = Flask(__name__)
 
 class ShopBot:
     def __init__(self):
@@ -51,12 +54,17 @@ class ShopBot:
                 return response(match) if callable(response) else response
         return random.choice(self.greetings) + ' ' + random.choice(self.responses)
 
-def main():
-    bot = ShopBot()
-    while True:
-        user_input = input("You: ")
-        response = bot.get_response(user_input)
-        print("ShopBot:", response)
+bot = ShopBot()
 
-if __name__ == "__main__":
-    main()
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_input = request.json.get('message')
+    response = bot.get_response(user_input)
+    return jsonify({'response': response})
+
+if __name__ == '__main__':
+    app.run(debug=True)
