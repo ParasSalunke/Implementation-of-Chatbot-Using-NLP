@@ -67,6 +67,11 @@
             border-radius: 4px;
             margin-left: 5px;
         }
+
+        .error {
+            color: red;
+            font-style: italic;
+        }
     </style>
 </head>
 
@@ -83,29 +88,41 @@
         function sendMessage() {
             const userInput = document.getElementById('user-input').value;
             if (userInput.trim() === '') return;
-
+        
             const chatBox = document.getElementById('chat-box');
             const userMessage = document.createElement('p');
             userMessage.className = 'user';
             userMessage.textContent = userInput;
             chatBox.appendChild(userMessage);
-
-            fetch('/.netlify/functions/chat', {
+        
+            fetch('/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ message: userInput })
             })
-                .then(response => response.json())
-                .then(data => {
-                    const botMessage = document.createElement('p');
-                    botMessage.className = 'bot';
-                    botMessage.textContent = data.response;
-                    chatBox.appendChild(botMessage);
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                });
-
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const botMessage = document.createElement('p');
+                botMessage.className = 'bot';
+                botMessage.textContent = data.response;
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            })
+            .catch(error => {
+                const errorMessage = document.createElement('p');
+                errorMessage.className = 'bot error';
+                errorMessage.textContent = 'Sorry, something went wrong. Please try again.';
+                chatBox.appendChild(errorMessage);
+                console.error('Error:', error);
+            });
+        
             document.getElementById('user-input').value = '';
         }
     </script>
