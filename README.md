@@ -23,11 +23,12 @@ ShopBot is a simple chatbot designed to assist customers with their shopping nee
 
 ## Usage
 
-1. Run the `main.py` script:
+1. Run the `app.py` script:
     ```sh
-    python main.py
+    python app.py
     ```
-2. Interact with ShopBot by typing your queries in the console.
+2. Open your web browser and navigate to `http://127.0.0.1:5000/`.
+3. Interact with ShopBot by typing your queries in the chat interface.
 
 ## Code Overview
 
@@ -42,9 +43,10 @@ The `ShopBot` class encapsulates the chatbot's behavior and data.
 - `match_greeting(self, user_input)`: Checks if the user input contains a greeting.
 - `match_patterns(self, user_input)`: Matches user input against predefined patterns and generates appropriate responses.
 
-### `main` Function
+### Flask Routes
 
-The `main` function initializes the `ShopBot` and starts the main loop to interact with the user.
+- `index()`: Renders the main chat interface.
+- `chat()`: Handles chat messages sent by the user and returns a response from the chatbot.
 
 ## Extending ShopBot
 
