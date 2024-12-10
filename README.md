@@ -9,6 +9,26 @@ ShopBot is a simple chatbot designed to assist customers with their shopping nee
 - Provides information about shipping, discounts, customer reviews, new arrivals, best sellers, and more.
 - Handles common customer service queries.
 
+## Flow Chart Of the Chat Bot
+![Chat Interface](screenshorts/Flowchart.png)
+
+## Screenshots
+
+### Chatbot Homepage
+![Chat Interface](screenshorts/Screenshot1.png)
+
+### Chatbot Response for a Greeting
+![Chatbot Response for a Greeting](screenshorts/Screenshot2.png)
+
+### Chatbot Response to a Product Query
+![Chatbot Response to a Product Query](screenshorts/Screenshot3.png)
+
+### Chatbot Response to "How to Return" or "Return Item" Query
+![Chatbot Response to "How to Return" or "Return Item" Query](screenshorts/Screenshot4.png)
+
+### Chatbot Response to "Payment Methods" or "How to Pay" Query
+![Chatbot Response to "Payment Methods" or "How to Pay" Query](screenshorts/Screenshot5.png)
+
 ## Installation
 
 1. Clone the repository:
